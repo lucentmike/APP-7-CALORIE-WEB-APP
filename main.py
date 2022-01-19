@@ -1,21 +1,22 @@
-from files.calories import Calorie
 from files.temperature import Temp
-import requests
-from pprint import pprint
-from selectorlib import Extractor
 
 
-r = requests.get()
-c = r.content 
-c = r.text 
+#Creates a calorie class that takes in weight, height, age and temperature
+#Has a calculate method that calculates calories needed
 
-#Use yaml file to identify the x-path of the data you want
-extractor = Extractor.from_yaml_file('files/temperature.yaml')
+class Calorie:
+    def __init__(self, weight, height, age, temperature):
+        self.weight = weight
+        self.height = height
+        self.age = age
+        self.temperature = temperature
 
-extractor.extract(c)
-
-raw_result = extractor.extract(c)
-raw_result["temp"].replace("", "")
-
-result = float(raw_result["temp"].replace("", ""))
+    def calculate(self):
+        result = 10 * self.weight + 6.5 * self.height - self.temperature * 10
+        return result
+    
+if __name__ == "__main__":
+    temperature = Temp(country="usa", city="San Marcos").get()
+    calorie = Calorie(weight=185, height=68, age=27, temperature=temperature)
+    print (calorie.calculate())
 
