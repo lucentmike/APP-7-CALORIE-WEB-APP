@@ -18,6 +18,20 @@ class CaloriesFormPage(MethodView):
         calorie_form = CalorieForm()
         return render_template('calories_form_page.html', caloriesform=calorie_form)
 
+#Creates the calorie form that inherits from the wtforms, forms. 
+class CalorieForm(Form):
+    weight = StringField(label = 'Weight: ' , default = 175)
+    height = StringField(label= 'Height: ' , default = 68 )
+    age = StringField(label = 'Age: ', default = 21)
+
+    city= StringField(label = 'City: ' , default = "San Diego")
+    country= StringField(label = 'Country: ' , default = "USA")
+
+    button = SubmitField('Calculate Calories')
+
+
+
+
 #Creates a calorie class that takes in weight, height, age and temperature
 #Has a calculate method that calculates calories needed
 
@@ -31,18 +45,6 @@ class Calorie:
     def calculate(self):
         calories = 10 * self.weight + 6.5 * self.height - self.temperature * 10
         return calories
-
-#Creates the calorie form that inherits from the wtforms, forms. 
-class CalorieForm(Form):
-    weight = StringField(label = 'Weight: ' , default = 175)
-    height = StringField(label= 'Height: ' , default = 68 )
-    age = StringField(label = 'Age: ', default = 21)
-
-    city= StringField(label = 'City: ' , default = "San Diego")
-    country= StringField(label = 'Country: ' , default = "USA")
-
-    button = SubmitField('Calculate Calories')
-
 
 
 if __name__ == "__main__":
