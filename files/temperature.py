@@ -4,7 +4,6 @@ import requests
 from pprint import pprint
 from selectorlib import Extractor
 
-
 class Temp:
     def __init__(self, country, city):
         self.country = country
